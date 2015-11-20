@@ -1,0 +1,109 @@
+################################################
+# Clang compatible flags (from GCC and Clang)
+# Flags Version: 2
+# While this list can be a good starting point to check
+# iterative compilation, it may be missing some flags,
+# or include others that do not have a real impact on the
+# performance.
+#
+# It was used as a means of quick evaluation of
+# iterative compilation.
+################################################
+
+
+################################################
+#lvl=O1
+################################################
+-funit-at-a-time
+-fprefetch-loop-arrays
+
+
+################################################
+#lvl=O2
+# increases compilation time and performance
+################################################
+-foptimize-sibling-calls
+-fsched-interblock #NO
+-fstrict-aliasing
+
+
+################################################
+#lvl=O3
+# They might have negative effect on performance
+################################################
+-ftree-slp-vectorize
+
+################################################
+#lvl=O4
+# Actually it is Ofast + other optimisation that are not in <=O3
+################################################
+-ffp-contract=off|fast|on
+-fomit-frame-pointer #W might interfere with debugging
+-fno-inline
+-fmerge-all-constants
+-fno-zero-initialized-in-bss
+-ftree-vectorize
+-funroll-loops
+-ffast-math
+-funsafe-math-optimizations
+-fassociative-math
+-freciprocal-math
+-ffinite-math-only
+-fno-signed-zeros
+-fno-trapping-math
+
+
+################################################
+#lvl=O5
+## Clang only options
+################################################
+-flimit-debug-info
+-fmodules-prune-after=SEC
+-fmodules-prune-interval=SEC
+-fno-assume-sane-operator-new
+-fno-autolink
+-fno-builtin
+-fno-common
+-fno-constant-cfstrings
+-fno-diagnostics-fixit-info
+-fno-dollars-in-identifiers
+-fno-elide-constructors
+-fno-elide-type #NO
+-fno-lax-vector-conversions
+-fno-limit-debug-info
+-fno-merge-all-constants
+-fno-operator-names #NO
+-fno-rtti
+-fno-sanitize-recover
+-fno-show-column
+-fno-show-source-location
+-fno-signed-char
+-fno-spell-checking
+-fno-threadsafe-statics
+-fno-unroll-loops
+-fno-use-cxa-atexit
+-fno-use-init-array
+-fpascal-strings
+-fshort-enums
+-fshow-overloads=best|all
+-fstrict-enums
+-ftemplate-backtrace-limit=NUM
+-ftrapv #NO
+-fuse-init-array
+-fvisibility-inlines-hidden #NO
+-fwrapv
+-fwritable-strings #NO
+-mno-global-merge
+-momit-leaf-frame-pointer
+-mregparm=0..32
+-msoft-float
+-mstrict-align
+
+# Flags for the arm architecture
+-march=armv7-a|native
+-mfloat-abi=softfp
+-mfpu=neon  
+-mtune=native
+-mcpu=native
+-munaligned-access
+-mrestrict-it
